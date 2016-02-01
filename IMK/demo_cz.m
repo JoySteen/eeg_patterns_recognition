@@ -17,16 +17,15 @@ plot_spectrum(fft(Cz), Fs);
 % window - last windowWidth samples
 % stepWidth - width of window moving step
 
-windowWidth = 3000;
-stepWidth = windowWidth * 0.5;
+windowWidth = 250;
+stepWidth = windowWidth * 0.2;
 for i = windowWidth-stepWidth+1 : N
     if ~mod(i, stepWidth)
-        k = stepWidth;
+        k = k + 1;
         start = i - windowWidth + 1;
         finish = i;
         window = Cz(start : finish);
         
-        name = sprintf('%g - %g', ts(start), ts(finish));
-        plot_spectrum(fft(window), Fs, name);
+        plot_spectrum(fft(window), Fs, sprintf('%g - %g', ts(start), ts(finish)));
     end
 end
