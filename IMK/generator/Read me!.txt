@@ -1,0 +1,4 @@
+Скрипты запускаются в следующей последовательности:
+1. targ_nontarg.m
+2. channels.m
+3. signa_generator.m

@@ -1,0 +1,5 @@
+start_time,duration,amplitude,event,source_channels
+1,0.5,80,oculo,Pz
+5,2,30,myo,Pz
+8,2,50,alpha,Pz
+15,5,40,myo,Pz
