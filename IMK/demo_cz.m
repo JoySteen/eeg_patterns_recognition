@@ -21,7 +21,6 @@ windowWidth = 250;
 stepWidth = windowWidth * 0.2;
 for i = windowWidth-stepWidth+1 : N
     if ~mod(i, stepWidth)
-        k = k + 1;
         start = i - windowWidth + 1;
         finish = i;
         window = Cz(start : finish);
