@@ -18,7 +18,7 @@
 % alpha-waves)
 % channels - contains name of channel, which was source of signal
 
-% Example: targ_nontarg ('p300-v1-40x3-3.6s-square.mat',[30 10 20],'prm_table.csv')
+% Example: targ_nontarg ('Pz', 'p300-v1-40x3-3.6s-square.mat',[30 10 20],'prm_table.csv')
 
 function [] = targ_nontarg (source_ch,filedat,prm_vector,prm_table)
 if nargin<1
