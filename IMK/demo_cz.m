@@ -1,6 +1,6 @@
-% load 'Cz.mat';
-load '218.mat';
-Cz = double(data(:, 2));
+load 'Cz.mat';
+% load '218.mat';
+% Cz = double(data(:, 2));
 N = size(Cz, 1);
 Fs = 250;
 
