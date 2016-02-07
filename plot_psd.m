@@ -7,7 +7,7 @@ function plot_psd(signal, Fs, filters, name)
         validateattributes(name, {'char'}, {});
     end
     
-    N = size(signal, 1);
+    N = size(signal, 2);
     magnitude = pwelch(signal, N);
 
 %     [pxx, f] = pwelch(signal, N);

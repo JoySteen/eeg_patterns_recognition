@@ -1,7 +1,7 @@
-load 'Cz.mat';
-% load '218.mat';
-% Cz = double(data(:, 2));
-N = size(Cz, 1);
+signal = get_signal('m');
+Cz = signal(2, :);
+
+N = size(Cz, 2);
 Fs = 250;
 
 filters = {
@@ -31,7 +31,21 @@ filters = {
         'f1', 80 ...
     ) ...
 };
-    
+
+estim = @(epochs) deal(mean(epochs), std(epochs));
+
+epochs = identify_epochs(signal, Fs);
+N_epochs = size(epochs, 2);
+
+[Mt, Dt] = estim(epochs);
+scale = [1:N_epochs] / Fs;
+plot_estimation(scale, Mt, Dt);
+
+epochs_spectrum = abs(fft(epochs, [], 2));
+[Mf, Df] = estim(epochs_spectrum);
+scale = [1:N_epochs] * Fs / N_epochs;
+plot_estimation(scale, Mf, Df);
+
 windowWidth = 1000;
 stepWidth = 60;
 for i = windowWidth : stepWidth : N
@@ -39,5 +53,5 @@ for i = windowWidth : stepWidth : N
     finish = i;
     window = Cz(start : finish);
     plot_psd(window, Fs, filters, sprintf('%g - %g', start/Fs, finish/Fs));
-%     break;
+    break;
 end
