@@ -1,15 +1,14 @@
-function [epochs] = identify_epochs(signal, Fs)
+function [epochs] = identify_epochs(channel, params)
+    
+    epoch_length = params.Fs * params.epoch_duration;
+    N_epochs = round(params.signal_length / epoch_length);
+    start_num = params.Fs*params.start_time;
+    disp(N_epochs);
+    epochs = zeros(N_epochs, epoch_length);
 
-    epoch_duration = 0.6;
-    start_time = 0.3;
-    flick_time = 0.15;
-    idle_time = 0.15;
-    
-    N = Fs * epoch_duration;
-    
-    epochs = [];
-    for i = Fs*start_time+N:N:size(signal, 2)
-        epochs = [epochs; signal(:, i-N+1:i)];
+    for i = 1 : N_epochs - 1
+        p0 = start_num + (i-1)*epoch_length;
+        p1 = p0 + epoch_length - 1;
+        epochs(i, :) = channel(p0 : p1);
     end
-    
 end
